@@ -116,7 +116,7 @@ Los módulos principales de la aplicación son:
 | **Animaciones** | Tailwind Animate + CSS transitions |
 | **Notificaciones** | Sonner |
 | **Analytics** | Vercel Analytics |
-| **Package Manager** | pnpm |
+| **Package Manager** | npm |
 
 ---
 
@@ -171,7 +171,7 @@ VIGIA-JOVEN/
 ### Prerrequisitos
 
 - Node.js >= 18.x
-- pnpm >= 9.x
+- npm >= 10.x
 
 ### Pasos
 
@@ -184,7 +184,7 @@ cd vigia-joven
 pnpm install
 
 # 3. Iniciar servidor de desarrollo
-pnpm dev
+npm run dev
 ```
 
 La aplicación estará disponible en [http://localhost:3000](http://localhost:3000).
@@ -193,10 +193,10 @@ La aplicación estará disponible en [http://localhost:3000](http://localhost:30
 
 | Comando | Descripción |
 |---|---|
-| `pnpm dev` | Inicia el servidor de desarrollo |
-| `pnpm build` | Genera el build de producción |
-| `pnpm start` | Inicia el servidor de producción |
-| `pnpm lint` | Ejecuta ESLint |
+| `npm run dev` | Inicia el servidor de desarrollo |
+| `npm run build` | Genera el build de producción |
+| `npm start` | Inicia el servidor de producción |
+| `npm run lint` | Ejecuta ESLint |
 
 ---
 
