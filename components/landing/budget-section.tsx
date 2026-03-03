@@ -8,10 +8,10 @@ export function BudgetSection() {
 
   const items = [
     { nameKey: "budget.item1", amountKey: "budget.item1.amount", descKey: "budget.item1.desc", pct: 40 },
-    { nameKey: "budget.item2", amountKey: "budget.item2.amount", descKey: "budget.item2.desc", pct: 13 },
+    { nameKey: "budget.item2", amountKey: "budget.item2.amount", descKey: "budget.item2.desc", pct: 12 },
     { nameKey: "budget.item3", amountKey: "budget.item3.amount", descKey: "budget.item3.desc", pct: 18 },
     { nameKey: "budget.item4", amountKey: "budget.item4.amount", descKey: "budget.item4.desc", pct: 15 },
-    { nameKey: "budget.item5", amountKey: "budget.item5.amount", descKey: "budget.item5.desc", pct: 14 },
+    { nameKey: "budget.item5", amountKey: "budget.item5.amount", descKey: "budget.item5.desc", pct: 15 },
   ]
 
   const colors = [

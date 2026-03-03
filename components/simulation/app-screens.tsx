@@ -80,16 +80,16 @@ function OnboardingScreen({
 
   if (step === 0) {
     return (
-      <div className="flex h-full flex-col items-center justify-center bg-gradient-to-b from-[#7C3AED] to-[#6D28D9] px-6 text-center">
+      <div className="flex h-full flex-col items-center justify-center bg-linear-to-b from-[#7C3AED] to-[#6D28D9] px-6 text-center">
         <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-white/20 backdrop-blur-sm">
           <Shield className="h-10 w-10 text-white" />
         </div>
         <h1 className="text-2xl font-bold text-white">{t("app.onboarding.title")}</h1>
-        <p className="mt-3 max-w-[260px] text-[13px] leading-relaxed text-white/70">
+        <p className="mt-3 max-w-65 text-[13px] leading-relaxed text-white/70">
           {t("app.onboarding.subtitle")}
         </p>
 
-        <div className="mt-8 w-full max-w-[280px]">
+        <div className="mt-8 w-full max-w-70">
           <p className="mb-3 text-[11px] font-bold text-white/60 uppercase tracking-wider">
             {t("app.onboarding.lang")}
           </p>
@@ -123,7 +123,7 @@ function OnboardingScreen({
 
         <button
           onClick={() => setStep(1)}
-          className="mt-8 w-full max-w-[280px] rounded-xl bg-white py-3.5 text-[14px] font-bold text-[#7C3AED] shadow-xl active:scale-[0.98] transition-transform"
+          className="mt-8 w-full max-w-70 rounded-xl bg-white py-3.5 text-[14px] font-bold text-[#7C3AED] shadow-xl active:scale-[0.98] transition-transform"
         >
           {t("app.onboarding.start")}
         </button>
@@ -191,7 +191,7 @@ function TopBar({ onPanic, t, lang, setLang }: { onPanic: () => void; t: (k: str
     <div className="flex items-center justify-between px-4 pb-2 pt-12 bg-[#F8F7FF]">
       <div className="flex items-center gap-2.5">
         <div className="relative">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#7C3AED]/20 to-[#EC4899]/20">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-linear-to-br from-[#7C3AED]/20 to-[#EC4899]/20">
             <Sparkles className="h-4 w-4 text-[#7C3AED]" />
           </div>
           <div className="absolute -top-0.5 -right-0.5 h-3 w-3 rounded-full bg-[#10B981] border-2 border-[#F8F7FF]" />
@@ -300,7 +300,7 @@ function RutaScreen({ t }: { t: (k: string) => string }) {
   return (
     <div className="flex flex-col gap-3 px-4 pb-4 pt-2">
       {/* Progress Card */}
-      <div className="rounded-2xl bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] p-4 shadow-lg shadow-[#7C3AED]/20">
+      <div className="rounded-2xl bg-linear-to-br from-[#7C3AED] to-[#6D28D9] p-4 shadow-lg shadow-[#7C3AED]/20">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-[10px] font-medium text-white/70">{t("app.progress")}</p>
@@ -311,7 +311,7 @@ function RutaScreen({ t }: { t: (k: string) => string }) {
           </div>
         </div>
         <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-white/20">
-          <div className="h-full w-[65%] rounded-full bg-gradient-to-r from-white to-white/80 transition-all duration-1000" />
+          <div className="h-full w-[65%] rounded-full bg-linear-to-r from-white to-white/80 transition-all duration-1000" />
         </div>
         <div className="mt-1.5 flex items-center justify-between">
           <p className="text-[10px] text-white/70">{t("app.xp")}</p>
@@ -340,7 +340,7 @@ function RutaScreen({ t }: { t: (k: string) => string }) {
       </div>
 
       {/* Story Card */}
-      <div className="relative overflow-hidden rounded-xl border border-[#EC4899]/20 bg-gradient-to-r from-[#EC4899]/5 to-[#7C3AED]/5 p-3">
+      <div className="relative overflow-hidden rounded-xl border border-[#EC4899]/20 bg-linear-to-r from-[#EC4899]/5 to-[#7C3AED]/5 p-3">
         <div className="flex items-center gap-2.5">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#EC4899]/10">
             <BookOpen className="h-5 w-5 text-[#EC4899]" />
@@ -701,7 +701,7 @@ function ChatScreen({ t, lang }: { t: (k: string) => string; lang: Lang }) {
     <div className="flex h-full flex-col">
       {/* Chat Header */}
       <div className="flex items-center gap-3 border-b border-[#E5E7EB] bg-white px-4 py-2.5">
-        <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#7C3AED]/20 to-[#EC4899]/20">
+        <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-[#7C3AED]/20 to-[#EC4899]/20">
           <MessageCircle className="h-5 w-5 text-[#7C3AED]" />
           <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-[#10B981] border-2 border-white" />
         </div>
@@ -903,6 +903,47 @@ function BibliotecaScreen({ t }: { t: (k: string) => string }) {
 /* ====== FORO SCREEN ====== */
 function ForoScreen({ t }: { t: (k: string) => string }) {
   const [liked, setLiked] = useState<Record<number, boolean>>({})
+  const [openTopic, setOpenTopic] = useState<number | null>(null)
+
+  const topics = [
+    {
+      id: 1,
+      titleKey: "app.foro.topic1",
+      descKey: "app.foro.topic1d",
+      replies: 24,
+      views: 138,
+      color: "bg-[#7C3AED]/10 text-[#7C3AED]",
+      dot: "bg-[#7C3AED]",
+    },
+    {
+      id: 2,
+      titleKey: "app.foro.topic2",
+      descKey: "app.foro.topic2d",
+      replies: 41,
+      views: 213,
+      color: "bg-[#10B981]/10 text-[#10B981]",
+      dot: "bg-[#10B981]",
+    },
+    {
+      id: 3,
+      titleKey: "app.foro.topic3",
+      descKey: "app.foro.topic3d",
+      replies: 17,
+      views: 95,
+      color: "bg-[#F59E0B]/10 text-[#F59E0B]",
+      dot: "bg-[#F59E0B]",
+    },
+    {
+      id: 4,
+      titleKey: "app.foro.topic4",
+      descKey: "app.foro.topic4d",
+      replies: 33,
+      views: 177,
+      color: "bg-[#EC4899]/10 text-[#EC4899]",
+      dot: "bg-[#EC4899]",
+    },
+  ]
+
   const posts = [
     {
       id: 1,
@@ -951,10 +992,49 @@ function ForoScreen({ t }: { t: (k: string) => string }) {
         </div>
       </div>
 
+      {/* Temas Guiados */}
+      <div className="rounded-xl border border-[#7C3AED]/20 bg-[#7C3AED]/5 p-3">
+        <p className="text-[11px] font-bold text-[#7C3AED] mb-0.5">{t("app.foro.topics")}</p>
+        <p className="text-[9px] text-[#6B7280] mb-2.5">{t("app.foro.topicsDesc")}</p>
+        <div className="flex flex-col gap-2">
+          {topics.map((topic) => (
+            <button
+              key={topic.id}
+              onClick={() => setOpenTopic(openTopic === topic.id ? null : topic.id)}
+              className="w-full text-left rounded-lg border border-[#E5E7EB] bg-white p-3 transition-all hover:shadow-sm"
+            >
+              <div className="flex items-start gap-2">
+                <span className={`mt-0.5 inline-block h-2 w-2 shrink-0 rounded-full ${topic.dot}`} />
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] font-bold text-[#1A1A2E] leading-snug">{t(topic.titleKey)}</p>
+                  {openTopic === topic.id && (
+                    <p className="mt-1 text-[9px] leading-relaxed text-[#6B7280]">{t(topic.descKey)}</p>
+                  )}
+                  <div className="mt-1.5 flex items-center gap-3">
+                    <span className="flex items-center gap-0.5 text-[8px] text-[#6B7280]">
+                      <MessageCircle className="h-2.5 w-2.5" /> {topic.replies} {t("app.foro.replies")}
+                    </span>
+                    <span className="flex items-center gap-0.5 text-[8px] text-[#6B7280]">
+                      <Eye className="h-2.5 w-2.5" /> {topic.views} {t("app.foro.views")}
+                    </span>
+                    <span className={`inline-block rounded-full px-1.5 py-0.5 text-[7px] font-bold ${topic.color}`}>
+                      {t("app.foro.pinned")}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Conversaciones */}
+      <p className="text-[11px] font-bold text-[#1A1A2E] -mb-1">{t("app.foro.conversations")}</p>
+
       {posts.map((post) => (
         <div key={post.id} className="rounded-xl border border-[#E5E7EB] bg-white p-3.5 transition-all hover:shadow-sm">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-[#7C3AED]/10 to-[#EC4899]/10">
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-br from-[#7C3AED]/10 to-[#EC4899]/10">
               <User className="h-3.5 w-3.5 text-[#7C3AED]" />
             </div>
             <span className="text-[10px] font-bold text-[#1A1A2E]">{post.user}</span>
@@ -994,7 +1074,7 @@ function PerfilScreen({ t }: { t: (k: string) => string }) {
       {/* Avatar Card */}
       <div className="flex flex-col items-center rounded-2xl bg-white border border-[#E5E7EB] p-5 shadow-sm">
         <div className="relative">
-          <div className="flex h-18 w-18 items-center justify-center rounded-full bg-gradient-to-br from-[#7C3AED]/20 to-[#EC4899]/20 ring-4 ring-[#7C3AED]/10">
+          <div className="flex h-18 w-18 items-center justify-center rounded-full bg-linear-to-br from-[#7C3AED]/20 to-[#EC4899]/20 ring-4 ring-[#7C3AED]/10">
             <User className="h-9 w-9 text-[#7C3AED]" />
           </div>
           <div className="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full bg-[#10B981] border-2 border-white shadow">

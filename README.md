@@ -7,6 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38BDF8?logo=tailwindcss)](https://tailwindcss.com/)
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com/)
+[![Demo](https://img.shields.io/badge/Demo-vigia--joven.vercel.app-7C3AED?logo=vercel)](https://vigia-joven.vercel.app/)
 
 ---
 
@@ -23,6 +24,7 @@
 - [Roadmap](#roadmap)
 - [Presupuesto](#presupuesto)
 - [Alianzas Estratégicas](#alianzas-estratégicas)
+- [Equipo](#equipo)
 - [Contacto](#contacto)
 
 ---
@@ -87,20 +89,21 @@ Derivación automática a **SLIM, CAIs y Línea 156**. SMS encriptado al servici
 
 ## Funcionalidades Principales
 
-Los módulos principales de la aplicación son:
+La plataforma cuenta con cinco módulos principales según el documento oficial de propuesta:
 
-| Módulo | Descripción |
-|---|---|
-| **Triage de 2 Niveles** | Screening rápido 2 min + test profundo OMS 10 min |
-| **Derivación Segura** | SMS encriptado a SLIM, CAIs y Línea 156 |
-| **Chatbot Offline IA** | Llama 3.1 8B en 3 idiomas |
-| **Biblioteca Multimedia** | +120 recursos con audio en Aimara y Quechua |
-| **Foro E2EE** | Comunidad entre pares cifrada extremo a extremo |
-| **Micro-Aprendizaje** | 3 min/día sobre un tema con gamificación |
+| # | Módulo | Descripción Técnica |
+|---|---|---|
+| 1 | **Motor de Triage (2 Niveles)** | Screening rápido 2 min (Nivel 1). Si hay indicadores de riesgo se activa test profundo OMS 10 min (Nivel 2). |
+| 2 | **Derivación API Zero-Knowledge** | SMS encriptado a SLIM y CAIs con **Código de Caso único**, sin exponer nombre ni datos personales de la usuaria. |
+| 3 | **Chatbot IA Offline** | Llama 3.1 8B + arquitectura **RAG** restringida a Ley 1152 boliviana. Disponible en Español, Aimara y Quechua, 100% offline. |
+| 4 | **Biblioteca Educativa Resiliente** | Infografías, audios y guías prácticas 100% offline. Contenido en 3 idiomas con pictogramas ARASAAC y texto a voz. |
+| 5 | **Foro Comunitario E2EE** | Apoyo entre pares con cifrado E2EE y moderación automatizada. Incluye **Temas Guiados** fijados (hilos predefinidos para que las usuarias compartan su postura) y conversaciones libres. |
 
 ---
 
 ## Tech Stack
+
+### Frontend (Landing Page / Demo)
 
 | Categoría | Tecnología |
 |---|---|
@@ -113,10 +116,37 @@ Los módulos principales de la aplicación son:
 | **Gráficas** | Recharts |
 | **Iconos** | Lucide React |
 | **Fuentes** | Inter + Space Grotesk (Google Fonts) |
-| **Animaciones** | Tailwind Animate + CSS transitions |
 | **Notificaciones** | Sonner |
 | **Analytics** | Vercel Analytics |
 | **Package Manager** | npm |
+
+### Frontend PWA (Arquitectura Objetivo)
+
+| Categoría | Tecnología |
+|---|---|
+| **Framework** | React 19 + Vite |
+| **Offline** | Service Workers (Workbox) + IndexedDB |
+| **IA en dispositivo** | Llama 3.1 8B vía WebAssembly (WASM) |
+| **Almacenamiento** | ~150 MB (imágenes WebP + audio Opus) |
+
+### Backend y Base de Datos (Sincronización Asíncrona)
+
+| Categoría | Tecnología |
+|---|---|
+| **Runtime** | Node.js |
+| **Framework** | Fastify + tRPC |
+| **Base de Datos** | PostgreSQL + Drizzle ORM |
+| **SMS / Derivaciones** | API Twilio (Zero-Knowledge — solo hash de caso + nivel de triaje) |
+| **Sincronización** | Solo en red WiFi segura; datos analíticos agregados, no rastreables |
+
+### Seguridad
+
+| Mecanismo | Detalle |
+|---|---|
+| **E2EE** | Criptografía de curva elíptica en foro y consultas de alto riesgo |
+| **Botón de pánico** | Camufla app como calculadora en < 1 segundo |
+| **Auto-borrado** | Caché y datos locales eliminados tras 30 días de inactividad |
+| **Zero-Knowledge** | Derivaciones solo envían código de hash + nivel Verde/Amarillo/Rojo |
 
 ---
 
@@ -181,7 +211,7 @@ git clone https://github.com/tu-usuario/vigia-joven.git
 cd vigia-joven
 
 # 2. Instalar dependencias
-pnpm install
+npm install
 
 # 3. Iniciar servidor de desarrollo
 npm run dev
@@ -220,37 +250,48 @@ t("hero.title1") // → "VIGIA" (ES) / traducción Aimara / traducción Quechua
 
 ---
 
-## Roadmap
+## Roadmap — Piloto 90 Días
 
 | Fase | Período | Hitos Clave |
 |---|---|---|
-| **1 — Preparación** | Semanas 1–3 | Diseño participativo con comunidades Aimara/Quechua, fine-tuning de IA con 200+ preguntas reales, capacitación de 50 Promotores Juveniles |
-| **2 — Desarrollo y Piloto** | Semanas 4–12 | Lanzamiento del MVP multilingüe, 8 semanas de piloto en 5 centros de salud, meta: 500 usuarias activas |
-| **3 — Evaluación de Impacto** | Semanas 13–16 | Estudio pre/post con grupo de control, evaluación de autoeficacia, encuesta de seguimiento a 30 días |
-| **4 — Escalamiento** | Mes 6+ | Presentación a gobiernos municipales, licenciamiento y expansión, alianzas con UNFPA y OPS |
+| **1 — Preparación** | Semanas 1–3 | Talleres de co-creación con jóvenes y expertos lingüísticos en La Paz y El Alto; fine-tuning final de Llama 3.1 8B con datos locales; capacitación de 50 Promotores Juveniles |
+| **2 — Desarrollo e Implementación del MVP** | Semanas 4–8 | Despliegue de PWA en 2–3 centros de salud y SLIMs; captación de usuarias a través de promotores; activación del triage y chatbot offline |
+| **3 — Ejecución y Ajuste** | Semanas 9–12 | Monitoreo del uso offline y efectividad del triage; seguimiento de derivaciones completadas; ajustes iterativos por retroalimentación |
+| **4 — Evaluación de Impacto** | Mes 4 | Estudio pre/post para medir conocimiento DSDR y autoeficacia; reporte final para UNFPA, OPS y gobiernos municipales |
 
-### Métricas de Éxito
+### Indicadores de Impacto (M&E)
 
-| Métrica | Meta |
+| Indicador | Descripción |
 |---|---|
-| Reducción embarazo adolescente prevenible | **33%** (proxy: intención de uso de anticoncepción) |
-| Usuarias activas en 90 días | **500+** |
-| Autoeficacia (negociación uso de condón) | **85%** (medido pre/post) |
-| Privacidad y anonimato | **100%** (E2EE + auto-destrucción de datos) |
+| **Autoeficacia** | % de usuarias que reportan mayor capacidad para negociar prácticas seguras (encuestas pre/post) |
+| **Acceso Efectivo** | Tasa de jóvenes derivadas que asisten efectivamente a una cita presencial |
+| **Privacidad Garantizada** | 100% de operaciones de triaje sin brechas de identidad ni filtración de datos |
 
 ---
 
 ## Presupuesto
 
-**Inversión Total: $55,000 USD**
+**Inversión Total: $20,000 USD** _(Bs. 139,200 — tipo de cambio referencial: 1 USD = 6.96 Bs.)_
 
-| Rubro | Monto | % |
-|---|---|---|
-| Desarrollo Técnico (PWA multilingüe, IA local, accesibilidad) | $22,000 | 40% |
-| Infraestructura (servidores, almacenamiento, CDN) | $7,000 | 13% |
-| Capacitación (promotores juveniles, género e inclusión) | $10,000 | 18% |
-| Coordinación (alianzas con SLIM, CAIs y servicios locales) | $8,000 | 15% |
-| Evaluación (estudio pre/post con grupo control) | $8,000 | 14% |
+> Presupuesto ajustado para el **MVP + Piloto de 90 días**.
+
+| Rubro | Monto USD | Monto Bs. | % |
+|---|---|---|---|
+| Desarrollo Técnico (PWA, motor de triaje, chatbot inicial, interfaz segura) | $8,000 | Bs. 55,680 | 40% |
+| Infraestructura e IA (servidores, alojamiento, APIs de SMS) | $2,500 | Bs. 17,400 | 12% |
+| Capacitación e Inclusión (materiales + 50 promotores juveniles) | $3,500 | Bs. 24,360 | 18% |
+| Coordinación Institucional (convenios SEDES, SLIMs, centros piloto) | $3,000 | Bs. 20,880 | 15% |
+| Evaluación de Impacto (estudio clínico pre/post) | $3,000 | Bs. 20,880 | 15% |
+
+---
+
+## Modelo de Sostenibilidad (Año 2+)
+
+La viabilidad financiera a largo plazo trasciende la dependencia de fondos de cooperación:
+
+- **Licenciamiento municipal**: escalamiento a otros departamentos con datos de impacto demostrado
+- **Fondos UNFPA / OPS**: ventana estratégica 2026 para soluciones digitales en la región andina
+- **Alineación con Ley 1152**: la normativa boliviana exige herramientas didácticas de educación sexual — VIGÍA JOVEN se posiciona como el brazo digital municipal ideal
 
 ---
 
@@ -266,9 +307,20 @@ t("hero.title1") // → "VIGIA" (ES) / traducción Aimara / traducción Quechua
 
 ---
 
+## Equipo
+
+| Integrante | Rol |
+|---|---|
+| **Omar Quispe Vargas** | Líder de proyecto / Desarrollo |
+| **Alejandro Cosulich Arcienega** | Desarrollo / Arquitectura |
+| **Jhamil Calixto Mamani Quea** | Diseño / Comunidades |
+
+---
+
 ## Contacto
 
-📧 [quispevargasomar@gmail.com](mailto:quispevargasomar@gmail.com)  
+🌐 **Demo:** [vigia-joven.vercel.app](https://vigia-joven.vercel.app/)  
+📧 [contacto@vigiajoven.org](mailto:contacto@vigiajoven.org)  
 📍 La Paz y El Alto, Bolivia  
 
 ---
