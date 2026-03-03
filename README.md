@@ -268,7 +268,7 @@ t("hero.title1") // → "VIGIA" (ES) / traducción Aimara / traducción Quechua
 
 ## Contacto
 
-📧 [contacto@vigiajoven.org](mailto:contacto@vigiajoven.org)  
+📧 [quispevargasomar@gmail.com](mailto:quispevargasomar@gmail.com)  
 📍 La Paz y El Alto, Bolivia  
 
 ---
